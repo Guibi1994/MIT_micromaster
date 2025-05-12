@@ -9,18 +9,27 @@ output:
 
 ## 1.1. Lecture 1: What is statistics
 
-Alguna notación inicial
+### Initial notation
 
--   '$n$' una catidad
+-   '$n$' : a quantity
+-   '$p$' : proportion
+-   '$\hat{p}$' : estimated proportion
+-   $r.v.$ : Random variable
 
-<!-- -->
+### Assumptions
 
--   '$p$' es una proporción
+'$\hat{p}$' is a parameter estimation just that:
 
--   '$\hat{p}$' es el **estimador** de la proporción
+$$ \hat{p} = \overline{R}_n = \frac{1}{n}\sum_{i = 1}^nR_i $$
 
-Un **estimador** es una formula en la que podemos imputar valores y optener un resultado. Un ejemplo de esto es '$\hat{p}$' o "promedio muestral":
+We have some assumptions about each $\overline{R}_i$ (each realization or observation of the variable):
 
-$$
-\hat{p} = \overline{R}_n = \frac{1}{n}\sum_{i = 1}^nR_i
-$$
+-   Its "$r.v.$" (a random variable which comes form a random process).
+
+-   Each $\overline{R}_i$ comes from a \_\_\_\_\_\_\_ (*Bernoulli, Gaussian, Exponential, Poisson, etc*) distribution with parameter $p$.
+
+-   $\overline{R}_1\space(...)\space\overline{R}_n$ are mutually independent: each realization is independent from others.
+
+If we take all this assumption, we have just built the "iid": *the variable is independent and identically distributed".* This means that each realization is independent from others, and all came from the same random process (the same distribution, the same "*Data Generating Process*").
+
+[NOTE:]{.underline} This is why modeling **TIME SERIES**, could be quite hard: each realization **is not independent**, very often each variable is high correlation across time (**autocorrelation**). The same tends to happen in **SPATIAL ANALYSIS**: it could exists spatial correlations such as geographical spillovers.
