@@ -1,0 +1,26 @@
+---
+title: "MIT Data Science Micro-Master"
+output:
+  html_notebook: default
+  pdf_document: default
+---
+
+# 1. Fundamentals of Statistics
+
+## 1.1. Lecture 1: What is statistics
+
+Alguna notación inicial
+
+-   '$n$' una catidad
+
+<!-- -->
+
+-   '$p$' es una proporción
+
+-   '$\hat{p}$' es el **estimador** de la proporción
+
+Un **estimador** es una formula en la que podemos imputar valores y optener un resultado. Un ejemplo de esto es '$\hat{p}$' o "promedio muestral":
+
+$$
+\hat{p} = \overline{R}_n = \frac{1}{n}\sum_{i = 1}^nR_i
+$$
