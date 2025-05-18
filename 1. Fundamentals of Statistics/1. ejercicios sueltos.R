@@ -58,6 +58,24 @@ expand.grid(
   pull(interesting)*128
 
 
+# Lecture 2: Probability Redux ----
+
+## 1. Examen sat
+
+# Pr|respuesta correcta
+pr = 1/6
+pw = 1-pr
+avg_guess = (pr*20)+(pw*-5)
 
 
+avg_guess
 
+expand.grid(
+  q1 = c(20,rep(-5,5)),
+  q2 = c(20,rep(-5,5)),
+  q3 = c(20,rep(-5,5)),
+  q4 = c(20,rep(-5,5))) %>% 
+  mutate(
+    score = sum(q1+q2+q3+q4)) %>% 
+  summarise(mean = mean(score),
+            sd = sd(score))

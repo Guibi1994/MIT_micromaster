@@ -11,6 +11,8 @@ output:
 
 ### Initial notation
 
+You can find more symbols and their latex code en [here](https://www.cmor-faculty.rice.edu/~heinken/latex/symbols.pdf).
+
 -   '$n$' : a quantity
 -   '$p$' : proportion
 -   '$\hat{p}$' : estimated proportion
@@ -22,14 +24,82 @@ output:
 
 $$ \hat{p} = \overline{R}_n = \frac{1}{n}\sum_{i = 1}^nR_i $$
 
-We have some assumptions about each $\overline{R}_i$ (each realization or observation of the variable):
+We have some assumptions about each ${R}_i$ (each realization or observation of the variable):
 
 -   Its "$r.v.$" (a random variable which comes form a random process).
 
--   Each $\overline{R}_i$ comes from a \_\_\_\_\_\_\_ (*Bernoulli, Gaussian, Exponential, Poisson, etc*) distribution with parameter $p$.
+-   Each ${R}_i$ comes from a \_\_\_\_\_\_\_ (*Bernoulli, Gaussian, Exponential, Poisson, etc*) distribution with parameter $P$.
 
--   $\overline{R}_1\space(...)\space\overline{R}_n$ are mutually independent: each realization is independent from others.
+-   ${R}_1\space(...)\space{R}_n$ are mutually independent: each realization is independent from others.
 
 If we take all this assumption, we have just built the "iid": *the variable is independent and identically distributed".* This means that each realization is independent from others, and all came from the same random process (the same distribution, the same "*Data Generating Process*").
 
 [NOTE:]{.underline} This is why modeling **TIME SERIES**, could be quite hard: each realization **is not independent**, very often each variable is high correlation across time (**autocorrelation**). The same tends to happen in **SPATIAL ANALYSIS**: it could exists spatial correlations such as geographical spillovers.
+
+## 1.2. Lecture 2: Probability Redux
+
+### Law of large numbers (LLN)
+
+If ones keep adding more and more sample to the expectation estimator, it will tend to the variable population's value:
+
+$$
+\overline{X}_n := \frac{1}{n}\sum_{i = 1}^nX_i \overset{n \to \infty}{\underset{\mathbb{P},\ \text{a.s.}}{\longrightarrow}} \mu
+$$
+
+### Central limit theorem (CLT)
+
+If ones keep adding more and more observations to the sample, the variance will tend shrink and stabilized.
+
+$$
+\sqrt{n}\left( \overline{X}_n - \mu \right) \overset{d}{\longrightarrow} \mathcal{N}(0, \sigma^2)
+$$
+
+Or its empirical equivalent:
+
+$$
+\overline{X}_n \approx N(\mu,\sigma^2/n)
+$$
+
+### Hoeffding's Inequality
+
+Hoeffding's inequality establishes that "the probability that probability that the sample mean varies significantly from the expected mean es low":
+
+$$
+\mathbb{P}(|\overline{X}-\mathbb{E}[\overline{X}]| \geq \epsilon) \leq 2exp\left(\frac{2n\epsilon^2}{(b-a)^2}\right) \space \text{ for all } \epsilon >0
+$$
+
+```{r}
+# Hoeffding's Inequality
+H_inequality <- function(e,n,a,b) {
+  p = 2*exp((-2*n*(e^2))/((b-a)^2))
+  p = ifelse(p>1,1,p)
+  
+  return(p)}
+
+# ¿Cuál es la probabilidad de que
+H_inequality(
+  # el promedio se muestral se desvie en 
+  e = 5,  # unidades del real
+  # dado que la muestra es de 
+  n = 1, # observaciones
+  # En un rango entre
+  a = 0,
+  # y 
+  b = 100) #?
+```
+
+### Gaussian Distribution
+
+The Gaussian distribution in one of the main distribution in statistics, **not because is the most common distribution in the nature (which is not true)**, but because is the nature of every statistical estimator.
+
+$$
+X \backsim \mathcal{N}(0, \sigma^2) \\ \mathbb{E}[X] =\mu \\var(X) = \sigma^2 >0
+$$Gaussian density (pdf)
+
+$$
+f_{\mu,\sigma^2}(x) = \frac{1}{\sigma\sqrt{2\pi}}exp(-\frac{(x-u)^2}{2\sigma^2})
+$$
+
+asdf
+
+# 2. Probability - The Science of Uncertainty and Data
